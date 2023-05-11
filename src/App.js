@@ -5,7 +5,7 @@ import RegPage from "./pages/RegPage";
 function App() {
 	return (
 		<div className="App">
-			<RegPage></RegPage>
+			<OrdersPage></OrdersPage>
 		</div>
 	);
 }
