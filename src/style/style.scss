@@ -63,3 +63,148 @@ main {
 		}
 	}
 }
+.orders_page {
+	display: flex;
+	flex-direction: row;
+
+	h1 {
+		font-family: "Inter";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 39px;
+		color: black;
+	}
+	.block_orders {
+		color: white;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(2, 1fr);
+		grid-row-gap: 20px;
+		margin: 0;
+
+		overflow: hidden;
+		.block_order {
+			display: grid;
+			grid-template-columns: repeat(1, 1fr);
+			grid-template-rows: repeat(1, 1fr);
+			grid-template-areas:
+				"a a a a b b b b"
+				"c c c c d d d d";
+			align-items: start;
+			width: 679px;
+			height: 106px;
+			background: #59ad67;
+			border-radius: 15px;
+			transition: all 0.3s ease-out;
+
+			cursor: pointer;
+
+			.head {
+				grid-area: a;
+				padding-left: 15px;
+			}
+			.price {
+				padding: 15px;
+				grid-area: d;
+			}
+			.img {
+				padding: 15px;
+				grid-area: b;
+			}
+			.tags {
+				grid-area: c;
+				display: flex;
+				padding: 15px;
+				.tag {
+					width: 95px;
+					height: 24px;
+					background: #ffffff;
+					color: black;
+					text-align: center;
+					border-radius: 5px;
+					margin-right: 15px;
+				}
+			}
+		}
+		:hover {
+			border-radius: 0.5rem;
+		}
+	}
+	.aside_orders_page {
+		display: flex;
+		flex-direction: column;
+		margin-left: auto;
+		margin-top: 130px;
+		input {
+			border: none;
+			width: 388px;
+			height: 39px;
+			background: rgba(89, 173, 103, 0.7);
+			border-radius: 15px;
+
+			transition: all 0.3s ease-out;
+			cursor: pointer;
+		}
+		:hover {
+			border-radius: 0.5rem;
+		}
+		.aside_tags {
+			margin-top: 40px;
+			color: white;
+			width: 400px;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+			grid-column-gap: 28px;
+			grid-row-gap: 15px;
+
+			.aside_tag {
+				width: 180px;
+				height: 40px;
+				text-align: center;
+				border-radius: 5px;
+				background: #59ad67;
+				border-radius: 15px;
+
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				transition: all 0.3s ease-out;
+				cursor: pointer;
+			}
+			:hover {
+				border-radius: 0.5rem;
+			}
+		}
+	}
+}
+.main_form {
+	width: 700px;
+	margin: 0 auto;
+
+	form {
+		display: flex;
+
+		flex-direction: column;
+		input {
+			margin-top: 15px;
+			border: none;
+			width: 388px;
+			height: 39px;
+			background: rgba(89, 173, 103, 0.7);
+			border-radius: 15px;
+
+			transition: all 0.3s ease-out;
+			cursor: pointer;
+		}
+		button {
+			margin-top: 15px;
+			background: #59ad67;
+			border-radius: 15px;
+			border: none;
+			height: 45px;
+		}
+	}
+}
