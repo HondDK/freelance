@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
 import useFetch from "../hooks/useFetch";
+import axios from "axios";
 const NewOrderCreate = () => {
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
@@ -11,27 +12,57 @@ const NewOrderCreate = () => {
 		"http://165.232.118.51:8001/freelance/orders/tags"
 	);
 
-	const [activeButton, setActiveButton] = useState(false);
 	const [categories, setCategories] = useState([]);
 	const [tags, setTags] = useState([]);
 
 	function selectTag(e) {
 		const selectedTags = [e, ...tags];
 		setTags(selectedTags);
-
-		setActiveButton(true);
 	}
 
 	function selectCategory(e) {
 		const selectedCategory = [e, ...tags];
 		setCategories(selectedCategory);
-
-		setActiveButton(true);
 	}
 
 	function clearTags() {
 		setCategories([]);
 		setTags([]);
+	}
+
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [price, setPrice] = useState();
+
+	function handleChangeTitle(e) {
+		setTitle(e.target.value);
+	}
+
+	function handleChangeDesctiption(e) {
+		setDescription(e.target.value);
+	}
+	function handleChangePrice(e) {
+		setPrice(e.target.value);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		const post = {
+			title: title,
+			description: description,
+			price: price,
+			tags: tags,
+			categories: categories,
+		};
+
+		axios
+			.post("http://165.232.118.51:8001/freelance/auth/register/", post)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 	return (
@@ -41,11 +72,16 @@ const NewOrderCreate = () => {
 				<form className="new_order_create_form" action="submit">
 					<h1>Cоздание нового заказа</h1>
 					<label>Краткое описание заказа</label>
-					<input type="text" />
+					<input onChange={handleChangeTitle} type="text" />
 					<label>Детальное описание заказа, техническое задание </label>
-					<input type="text" className="new_order_create_form_input" />
+					<input
+						type="text"
+						onChange={handleChangeDesctiption}
+						className="new_order_create_form_input"
+					/>
 					<label>Цена за заказ в тенге </label>
-					<input type="number" />
+					<input type="number" onChange={handleChangePrice} />
+					<button onClick={handleSubmit}>Создать заказ</button>
 				</form>
 
 				<aside className="aside_orders_page">

@@ -5,6 +5,9 @@ body {
 input {
 	font-family: "Inter", sans-serif;
 }
+button {
+	font-family: "Inter", sans-serif;
+}
 header {
 	width: 1252px;
 	margin: 0 auto;
@@ -294,6 +297,20 @@ main {
 		}
 		.new_order_create_form_input {
 			height: 250px;
+		}
+		button {
+			margin-top: 15px;
+			background: #59ad67;
+			border-radius: 15px;
+			border: none;
+			height: 45px;
+			color: #ffffff;
+
+			transition: all 0.3s ease-out;
+			cursor: pointer;
+		}
+		:hover {
+			border-radius: 0.5rem;
 		}
 	}
 }

@@ -21,7 +21,6 @@ const OrdersPage = () => {
 		setItems(noSortedItems);
 	}, [noSortedItems]);
 
-	const [activeButton, setActiveButton] = useState(false);
 	const [tags, setTags] = useState([]);
 
 	function selectTag(e) {
@@ -31,7 +30,6 @@ const OrdersPage = () => {
 		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
-		setActiveButton(true);
 	}
 
 	const [categories, setCategories] = useState([]);
@@ -45,7 +43,6 @@ const OrdersPage = () => {
 		)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
-		setActiveButton(true);
 	}
 
 	function clearTags() {
@@ -130,7 +127,6 @@ const OrdersPage = () => {
 					</div>
 				</aside>
 			</main>
-			
 		</>
 	);
 };
