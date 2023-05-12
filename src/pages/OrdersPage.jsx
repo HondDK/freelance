@@ -14,15 +14,31 @@ const OrdersPage = () => {
 	const noSortedItems = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/orders"
 	);
+
 	useEffect(() => {
 		setItems(noSortedItems);
 	}, [noSortedItems]);
 
 	function selectTag(e) {
 		const tagUuids = e;
-		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
+		fetch(
+			`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}&`
+		)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
+	}
+
+	function selectCategory(e) {
+		const categoryUuids = e;
+		fetch(
+			`http://165.232.118.51:8001/freelance/orders/orders?categories=${categoryUuids}`
+		)
+			.then((response) => response.json())
+			.then((data) => setItems(data));
+	}
+
+	function clearTags() {
+		setItems(noSortedItems);
 	}
 
 	return (
@@ -56,8 +72,12 @@ const OrdersPage = () => {
 
 				<aside className="aside_orders_page">
 					<input type="text" />
-
-					{/* <div className="aside_tags">
+					<button onClick={clearTags}>Cбросить фильтрацию</button>
+					<div className="aside_text">
+						<p>Выбор по категориям</p>
+					</div>
+					<hr />
+					<div className="aside_tags">
 						{itemsCategory &&
 							itemsCategory.results &&
 							itemsCategory.results.map((item) => (
@@ -69,8 +89,11 @@ const OrdersPage = () => {
 									{item.name}
 								</div>
 							))}
-					</div> */}
-
+					</div>
+					<div className="aside_text">
+						<p>Выбор по тегам</p>
+					</div>
+					<hr />
 					<div className="aside_tags">
 						{itemsTags &&
 							itemsTags.results &&
