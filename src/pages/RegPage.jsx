@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Header from "../components/UI/Header";
 const RegPage = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -31,12 +32,7 @@ const RegPage = () => {
 
 	return (
 		<>
-			<header>
-				<h1>FREELANCE</h1>
-				<div>
-					<button>Вход</button>
-				</div>
-			</header>
+			<Header />
 			<main className="main_form">
 				<form onSubmit={handleSubmit}>
 					<label>Регистрация</label>

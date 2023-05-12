@@ -1,17 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../components/UI/Header";
 const MainPage = () => {
 	return (
 		<>
-			<header>
-				<h1>FREELANCE</h1>
-				<div>
-					<Link to="/registration" relative="path">
-						<button>Регистрация</button>{" "}
-					</Link>
-					<button>Вход</button>
-				</div>
-			</header>
+			<Header />
 			<main>
 				<aside>
 					<div>

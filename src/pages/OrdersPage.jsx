@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
+import Header from "../components/UI/Header";
 
 const OrdersPage = () => {
 	const itemsCategory = useFetch(
@@ -54,15 +55,11 @@ const OrdersPage = () => {
 
 	return (
 		<>
-			<header>
-				<h1>FREELANCE</h1>
-				<div>
-					<button>Регистрация</button> <button>Вход</button>
-				</div>
-			</header>
+			<Header />
 			<main className="orders_page">
 				<article className="block_orders">
 					<h1>Заказы({items.count})</h1>
+
 					{items &&
 						items.results &&
 						items.results.map((item) => (
