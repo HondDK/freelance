@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/UI/Header";
+import Footer from "../components/UI/Footer";
 
 const OrdersPage = () => {
 	const itemsCategory = useFetch(
@@ -129,6 +130,7 @@ const OrdersPage = () => {
 					</div>
 				</aside>
 			</main>
+			<Footer />
 		</>
 	);
 };
