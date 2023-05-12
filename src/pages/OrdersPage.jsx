@@ -19,13 +19,20 @@ const OrdersPage = () => {
 		setItems(noSortedItems);
 	}, [noSortedItems]);
 
+	const [tags, setTags] = useState([]);
+
 	function selectTag(e) {
-		const tagUuids = e;
-		fetch(
-			`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}&`
-		)
+		const selectedTags = [e, ...tags];				 // добавляем новый тег в список выбранных
+		setTags(selectedTags); 							  // сохраняем список выбранных тегов в состоянии
+		const tagUuids = selectedTags.join("&tags="); // объединяем все выбранные теги в строку
+		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
+	}
+
+	function clearTags() {
+		setItems(noSortedItems);
+		setTags([]); // очищаем список выбранных тегов
 	}
 
 	function selectCategory(e) {
@@ -37,9 +44,7 @@ const OrdersPage = () => {
 			.then((data) => setItems(data));
 	}
 
-	function clearTags() {
-		setItems(noSortedItems);
-	}
+	
 
 	return (
 		<>
@@ -55,13 +60,15 @@ const OrdersPage = () => {
 					{items &&
 						items.results &&
 						items.results.map((item) => (
-							<div className="block_order">
+							<div key={item.uuid} className="block_order">
 								<>
 									<p className="head">{item.title}</p>
 									<img className="block_order_img" src="" alt="" />
 									<div className="tags">
 										{item.tags.map((tag) => (
-											<div className="tag">{tag.name}</div>
+											<div key={tag.uuid} className="tag">
+												{tag.name}
+											</div>
 										))}
 									</div>
 									<span className="price">{item.price}₸</span>
