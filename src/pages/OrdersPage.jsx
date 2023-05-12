@@ -130,7 +130,7 @@ const OrdersPage = () => {
 					</div>
 				</aside>
 			</main>
-			<Footer />
+			
 		</>
 	);
 };

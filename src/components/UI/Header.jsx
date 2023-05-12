@@ -7,7 +7,7 @@ const Header = () => {
 				<h1>FREELANCE</h1>
 			</Link>
 			<div>
-				<Link to="/registration" relative="path">
+				<Link to="/new_order_create" relative="path">
 					<button>+ cоздать заказ</button>
 				</Link>
 				<Link to="/registration" relative="path">

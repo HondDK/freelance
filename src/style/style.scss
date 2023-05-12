@@ -2,6 +2,9 @@
 body {
 	font-family: "Inter", sans-serif;
 }
+input {
+	font-family: "Inter", sans-serif;
+}
 header {
 	width: 1252px;
 	margin: 0 auto;
@@ -156,73 +159,46 @@ main {
 			border-radius: 0.5rem;
 		}
 	}
-	.aside_orders_page {
-		display: flex;
-		flex-direction: column;
-		margin-left: auto;
-		margin-top: 130px;
-		.aside_text {
-			margin: 0 auto;
-		}
-		input {
-			border: none;
-			width: 388px;
-			height: 39px;
-			background: rgba(89, 173, 103, 0.7);
-			border-radius: 15px;
+}
 
-			transition: all 0.3s ease-out;
-			cursor: pointer;
-		}
-		:hover {
-			border-radius: 0.5rem;
-		}
-		.aside_tags {
-			margin-top: 15px;
-			color: white;
-			width: 400px;
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(2, 1fr);
-			grid-column-gap: 28px;
-			grid-row-gap: 15px;
+.aside_orders_page {
+	display: flex;
+	flex-direction: column;
+	margin-left: auto;
+	margin-top: 130px;
+	.aside_text {
+		margin: 0 auto;
+	}
+	input {
+		border: none;
+		width: 388px;
+		height: 39px;
+		background: rgba(89, 173, 103, 0.7);
+		border-radius: 15px;
 
-			.aside_tag {
-				width: 180px;
-				height: 40px;
-				text-align: center;
-				border-radius: 5px;
-				background: #59ad67;
-				border-radius: 15px;
+		transition: all 0.3s ease-out;
+		cursor: pointer;
+	}
+	:hover {
+		border-radius: 0.5rem;
+	}
+	.aside_tags {
+		margin-top: 15px;
+		color: white;
+		width: 400px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		grid-column-gap: 28px;
+		grid-row-gap: 15px;
 
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				overflow: hidden;
-
-				transition: all 0.3s ease-out;
-				cursor: pointer;
-			}
-			:active {
-				background-color: #ffffff;
-			}
-
-			:hover {
-				border-radius: 0.5rem;
-			}
-		}
-		hr {
-			width: 99%;
-			margin-top: 0px;
-		}
-		button {
-			margin-top: 25px;
-			width: 99%;
+		.aside_tag {
+			width: 180px;
 			height: 40px;
 			text-align: center;
+			border-radius: 5px;
 			background: #59ad67;
 			border-radius: 15px;
-			border-style: none;
 
 			display: flex;
 			justify-content: center;
@@ -232,8 +208,37 @@ main {
 			transition: all 0.3s ease-out;
 			cursor: pointer;
 		}
+		:active {
+			background-color: #ffffff;
+		}
+
+		:hover {
+			border-radius: 0.5rem;
+		}
+	}
+	hr {
+		width: 99%;
+		margin-top: 0px;
+	}
+	button {
+		margin-top: 25px;
+		width: 99%;
+		height: 40px;
+		text-align: center;
+		background: #59ad67;
+		border-radius: 15px;
+		border-style: none;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+
+		transition: all 0.3s ease-out;
+		cursor: pointer;
 	}
 }
+
 .main_form {
 	width: 700px;
 	margin: 0 auto;
@@ -259,6 +264,36 @@ main {
 			border-radius: 15px;
 			border: none;
 			height: 45px;
+		}
+	}
+}
+
+.new_order_create {
+	display: flex;
+	flex-direction: row;
+	.new_order_create_form {
+		display: flex;
+		flex-direction: column;
+		border-radius: 15px;
+		height: 700px;
+		label {
+			font-size: 20px;
+			margin-top: 15px;
+		}
+		input {
+			color: #ffffff;
+			margin-top: 15px;
+			border: none;
+			width: 750px;
+			height: 60px;
+			background: rgba(89, 173, 103, 0.7);
+			border-radius: 15px;
+
+			transition: all 0.3s ease-out;
+			cursor: pointer;
+		}
+		.new_order_create_form_input {
+			height: 250px;
 		}
 	}
 }
