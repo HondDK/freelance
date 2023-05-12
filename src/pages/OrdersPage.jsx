@@ -11,7 +11,6 @@ const OrdersPage = () => {
 	);
 
 	const [items, setItems] = useState([]);
-
 	const noSortedItems = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/orders"
 	);
@@ -58,14 +57,20 @@ const OrdersPage = () => {
 				<aside className="aside_orders_page">
 					<input type="text" />
 
-					<div className="aside_tags">
+					{/* <div className="aside_tags">
 						{itemsCategory &&
 							itemsCategory.results &&
 							itemsCategory.results.map((item) => (
-								<div className="aside_tag">{item.name}</div>
+								<div
+									key={item.uuid}
+									onClick={() => selectCategory(item.uuid)}
+									className="aside_tag"
+								>
+									{item.name}
+								</div>
 							))}
-					</div>
-					<hr></hr>
+					</div> */}
+
 					<div className="aside_tags">
 						{itemsTags &&
 							itemsTags.results &&
