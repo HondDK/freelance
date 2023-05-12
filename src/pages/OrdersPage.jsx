@@ -19,32 +19,38 @@ const OrdersPage = () => {
 		setItems(noSortedItems);
 	}, [noSortedItems]);
 
+	const [activeButton, setActiveButton] = useState(false);
 	const [tags, setTags] = useState([]);
 
 	function selectTag(e) {
-		const selectedTags = [e, ...tags];				 // добавляем новый тег в список выбранных
-		setTags(selectedTags); 							  // сохраняем список выбранных тегов в состоянии
+		const selectedTags = [e, ...tags]; // добавляем новый тег в список выбранных
+		setTags(selectedTags); // сохраняем список выбранных тегов в состоянии
 		const tagUuids = selectedTags.join("&tags="); // объединяем все выбранные теги в строку
 		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
+		setActiveButton(true);
 	}
 
-	function clearTags() {
-		setItems(noSortedItems);
-		setTags([]); // очищаем список выбранных тегов
-	}
+	const [categories, setCategories] = useState([]);
 
 	function selectCategory(e) {
-		const categoryUuids = e;
+		const selectedCategory = [e, ...tags];
+		setCategories(selectedCategory);
+		const categoryUuids = selectedCategory.join("&categories=");
 		fetch(
 			`http://165.232.118.51:8001/freelance/orders/orders?categories=${categoryUuids}`
 		)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
+		setActiveButton(true);
 	}
 
-	
+	function clearTags() {
+		setItems(noSortedItems);
+		setCategories([]);
+		setTags([]);
+	}
 
 	return (
 		<>
@@ -92,6 +98,12 @@ const OrdersPage = () => {
 									key={item.uuid}
 									onClick={() => selectCategory(item.uuid)}
 									className="aside_tag"
+									style={{
+										backgroundColor: categories.includes(item.uuid)
+											? "black"
+											: "",
+										color: categories.includes(item.uuid) ? "white" : "",
+									}}
 								>
 									{item.name}
 								</div>
@@ -109,6 +121,10 @@ const OrdersPage = () => {
 									key={item.uuid}
 									onClick={() => selectTag(item.uuid)}
 									className="aside_tag"
+									style={{
+										backgroundColor: tags.includes(item.uuid) ? "black" : "",
+										color: tags.includes(item.uuid) ? "white" : "",
+									}}
 								>
 									{item.name}
 								</div>
