@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 
 const OrdersPage = () => {
-	const items = useFetch("http://165.232.118.51:8001/freelance/orders/orders");
-
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
 	);
@@ -11,6 +9,22 @@ const OrdersPage = () => {
 	const itemsTags = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/tags"
 	);
+
+	const [items, setItems] = useState([]);
+
+	const noSortedItems = useFetch(
+		"http://165.232.118.51:8001/freelance/orders/orders"
+	);
+	useEffect(() => {
+		setItems(noSortedItems);
+	}, [noSortedItems]);
+
+	function selectTag(e) {
+		const tagUuids = e;
+		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
+			.then((response) => response.json())
+			.then((data) => setItems(data));
+	}
 
 	return (
 		<>
@@ -56,7 +70,13 @@ const OrdersPage = () => {
 						{itemsTags &&
 							itemsTags.results &&
 							itemsTags.results.map((item) => (
-								<div className="aside_tag">{item.name}</div>
+								<div
+									key={item.uuid}
+									onClick={() => selectTag(item.uuid)}
+									className="aside_tag"
+								>
+									{item.name}
+								</div>
 							))}
 					</div>
 				</aside>
