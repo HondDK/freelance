@@ -1,6 +1,11 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import useFetch from "../hooks/useFetch";
 const OrderDetailPage = () => {
+	const items = useFetch(
+		"http://165.232.118.51:8001/freelance/orders/orders" +
+			"8088dfc5-6443-4409-a289-74b1c723bdbe"
+	);
+
 	return (
 		<>
 			<header>
@@ -15,8 +20,7 @@ const OrderDetailPage = () => {
 						<p>title</p>
 						<span>10000tg</span>
 					</div>
-					<p></p>
-					<button>Откликнуться</button>
+					<p></p><button>Откликнуться</button>
 				</article>
 				<aside className="order_detail_page_contacts"></aside>
 			</main>

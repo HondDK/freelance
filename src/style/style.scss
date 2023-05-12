@@ -10,15 +10,21 @@ header {
 	div {
 		display: flex;
 		align-items: center;
+		transition: all 0.3s ease-out;
 		button {
 			font-size: 16px;
 			font-family: "Inter", sans-serif;
-			background: #59ad67;
+			background: #ffffff;
 			border-radius: 15px;
 			margin-right: 25px;
-			color: white;
-			padding: 25px;
+			padding: 0px 15px 0px 15px;
 			height: 40px;
+
+			transition: all 0.3s ease-out;
+			cursor: pointer;
+		}
+		:hover {
+			border-radius: 0.5rem;
 		}
 	}
 }
@@ -28,6 +34,9 @@ main {
 		color: white;
 		border-radius: 15px;
 		padding: 10px;
+		transition: all 0.3s ease-out;
+
+		cursor: pointer;
 	}
 	aside {
 		display: grid;
@@ -44,6 +53,12 @@ main {
 			color: white;
 			padding: 25px;
 			height: 40px;
+
+			cursor: pointer;
+			transition: all 0.3s ease-out;
+		}
+		:hover {
+			border-radius: 0.5rem;
 		}
 	}
 	article {
@@ -60,6 +75,12 @@ main {
 			background: #ffffff;
 			border-radius: 15px;
 			border: 0;
+
+			cursor: pointer;
+			transition: all 0.3s ease-out;
+		}
+		:hover {
+			border-radius: 0.5rem;
 		}
 	}
 }
@@ -173,6 +194,7 @@ main {
 				justify-content: center;
 				align-items: center;
 				overflow: hidden;
+
 				transition: all 0.3s ease-out;
 				cursor: pointer;
 			}
