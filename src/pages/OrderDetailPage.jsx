@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/UI/Header";
+import { useParams } from "react-router-dom";
 const OrderDetailPage = () => {
+	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const items = useFetch(
-		"http://165.232.118.51:8001/freelance/orders/orders/" +
-			"8088dfc5-6443-4409-a289-74b1c723bdbe"
+		`http://165.232.118.51:8001/freelance/orders/orders/${uuid}`
 	);
 
 	return (
@@ -27,7 +28,7 @@ const OrderDetailPage = () => {
 				</article>
 
 				<aside className="order_detail_page_contacts">
-					<p>{items.name}</p>
+					<p>{items.creator_username}</p>
 					<p>Контакты заказчика</p>
 				</aside>
 			</main>

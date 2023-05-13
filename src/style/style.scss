@@ -8,6 +8,11 @@ input {
 button {
 	font-family: "Inter", sans-serif;
 }
+a {
+	color: #000 !important;
+	text-decoration: none;
+}
+
 header {
 	width: 1252px;
 	margin: 0 auto;
@@ -367,7 +372,6 @@ main {
 		text-align: center;
 		p {
 			width: 100%;
-			
 		}
 	}
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
-
+import { Link } from "react-router-dom";
 const OrdersPage = () => {
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
@@ -61,20 +61,22 @@ const OrdersPage = () => {
 					{items &&
 						items.results &&
 						items.results.map((item) => (
-							<div key={item.uuid} className="block_order">
-								<>
-									<p className="head">{item.title}</p>
-									<img className="block_order_img" src="" alt="" />
-									<div className="tags">
-										{item.tags.map((tag) => (
-											<div key={tag.uuid} className="tag">
-												{tag.name}
-											</div>
-										))}
-									</div>
-									<span className="price">{item.price}₸</span>
-								</>
-							</div>
+							<Link to={`/order_detail/${item.uuid}`}>
+								<div key={item.uuid} className="block_order">
+									<>
+										<p className="head">{item.title}</p>
+										<img className="block_order_img" src="" alt="" />
+										<div className="tags">
+											{item.tags.map((tag) => (
+												<div key={tag.uuid} className="tag">
+													{tag.name}
+												</div>
+											))}
+										</div>
+										<span className="price">{item.price}₸</span>
+									</>
+								</div>
+							</Link>
 						))}
 				</article>
 

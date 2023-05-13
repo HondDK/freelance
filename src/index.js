@@ -20,7 +20,7 @@ const router = createBrowserRouter([
 		element: <OrdersPage />,
 	},
 	{
-		path: "/order_detail",
+		path: "/order_detail/:uuid",
 		element: <OrderDetailPage />,
 	},
 	{
