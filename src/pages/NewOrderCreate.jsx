@@ -56,7 +56,11 @@ const NewOrderCreate = () => {
 		};
 
 		axios
-			.post("http://165.232.118.51:8001/freelance/orders/orders/", post)
+			.post("http://165.232.118.51:8001/freelance/orders/orders/", post, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+				},
+			})
 			.then((response) => {
 				console.log(response);
 			})

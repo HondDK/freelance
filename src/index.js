@@ -7,6 +7,8 @@ import OrdersPage from "./pages/OrdersPage";
 import RegPage from "./pages/RegPage";
 import NewOrderCreate from "./pages/NewOrderCreate";
 import OrderDetailPage from "./pages/OrderDetailPage";
+import LoginPage from "./pages/LoginPage";
+import UserPage from "./pages/UserPage";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +26,14 @@ const router = createBrowserRouter([
 	{
 		path: "/registration",
 		element: <RegPage />,
+	},
+	{
+		path: "/login",
+		element: <LoginPage />,
+	},
+	{
+		path: "/profile",
+		element: <UserPage />,
 	},
 	{
 		path: "/new_order_create",

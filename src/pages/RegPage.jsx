@@ -4,12 +4,16 @@ import Header from "../components/UI/Header";
 const RegPage = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
 	const [err, setErr] = useState(false);
+
 	function handleSubmit(e) {
 		e.preventDefault();
 		const post = {
 			username: username,
 			password: password,
+			customer_description: "123",
+			employee_description: "123",
 		};
 
 		axios
