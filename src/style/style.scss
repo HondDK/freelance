@@ -314,7 +314,63 @@ main {
 		}
 	}
 }
-
+.order_detail_page {
+	display: flex;
+	justify-content: space-around;
+	.order_detail_page_detail {
+		display: flex;
+		flex-direction: column;
+		background-color: #59ad67;
+		color: #ffffff;
+		border-radius: 15px;
+		padding: 25px;
+		width: 675px;
+		height: 100%;
+		justify-content: space-between;
+		.tag {
+			width: 95px;
+			height: 24px;
+			background: #ffffff;
+			color: black;
+			text-align: center;
+			border-radius: 5px;
+			margin-right: 15px;
+			padding: 0 10px 0 10px;
+			overflow: hidden;
+			padding-top: auto;
+		}
+		.order_detail_page_detail_text_head {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+		}
+		.order_detail_page_detail_text_tags {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+			align-items: center;
+			margin-top: auto;
+		}
+	}
+	.order_detail_page_contacts {
+		display: flex;
+		flex-direction: column;
+		margin-top: 75px;
+		width: 390px;
+		height: 475px;
+		padding: 25px;
+		background-color: #59ad67;
+		color: #ffffff;
+		border-radius: 15px;
+		text-align: center;
+		p {
+			width: 100%;
+			
+		}
+	}
+}
 footer {
 	padding: 0;
 	margin: 0;
