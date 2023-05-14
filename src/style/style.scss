@@ -386,7 +386,7 @@ main {
 		.userpage_new_contact {
 			display: flex;
 			flex-direction: column;
-			padding: 5px;
+			padding: 15px;
 			margin-top: 30px;
 			width: 30%;
 			color: white;
@@ -396,12 +396,18 @@ main {
 				border-radius: 5px;
 				margin-top: 5px;
 				margin-bottom: 5px;
+				transition: all 0.3s ease-out;
 			}
 			button {
 				background-color: white;
 				color: #000;
 				width: 100%;
-				border-radius: 5px;
+				border-radius: 15px;
+				transition: all 0.3s ease-out;
+				cursor: pointer;
+			}
+			:hover {
+				border-radius: 0.5rem;
 			}
 		}
 	}

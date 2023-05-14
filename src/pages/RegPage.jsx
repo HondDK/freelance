@@ -2,18 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/UI/Header";
 const RegPage = () => {
-	const [username, setUsername] = useState("");
+	const [login, setLogin] = useState("");
 	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState("");
 
 	const [err, setErr] = useState(false);
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		const post = {
-			username: username,
+			username: login,
 			password: password,
-			customer_description: "123",
-			employee_description: "123",
+			customer_description: username,
+			employee_description: "Описание пустое",
 		};
 
 		axios
@@ -27,11 +28,14 @@ const RegPage = () => {
 			});
 	}
 
-	function handleChangeUser(e) {
-		setUsername(e.target.value);
+	function handleChangeLogin(e) {
+		setLogin(e.target.value);
 	}
 	function handleChangePass(e) {
 		setPassword(e.target.value);
+	}
+	function handleChangeName(e) {
+		setUsername(e.target.value);
 	}
 
 	return (
@@ -44,8 +48,15 @@ const RegPage = () => {
 						type="text"
 						name="name"
 						placeholder="Логин"
+						value={login}
+						onChange={handleChangeLogin}
+					></input>
+					<input
+						type="text"
+						name="name"
+						placeholder="Имя пользователя"
 						value={username}
-						onChange={handleChangeUser}
+						onChange={handleChangeName}
 					></input>
 					<input
 						type="password"

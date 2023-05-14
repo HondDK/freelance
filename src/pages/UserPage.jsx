@@ -14,16 +14,44 @@ const UserPage = () => {
 
 	const [contact, setContact] = useState("");
 	const [link, setLink] = useState("");
+	const [detailProfile, setDetailProfile] = useState("");
 
 	function handleChangeContact(e) {
 		setContact(e.target.value);
 	}
 	function handleChangeContactLink(e) {
-		setLink(e.target.value);
+		setLink(contact + ": " + e.target.value);
 	}
 
-	function newContact(e) {
-		e.preventDefault();
+	function handleChangeProfile(e) {
+		setDetailProfile(e.target.value);
+	}
+
+	function newDetailProfile() {
+		const post = {
+			customer_description: items.customer_description,
+			employee_description: detailProfile,
+		};
+
+		axios
+			.post(
+				"http://165.232.118.51:8001/freelance/auth/users/update_profile/",
+				post,
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+					},
+				}
+			)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+
+	function newContact() {
 		const post = {
 			name: contact,
 			link: link,
@@ -52,16 +80,25 @@ const UserPage = () => {
 			<Header></Header>
 			<main className="userpage">
 				<h1>{items.customer_description}</h1>
+				<p>{items.employee_description}</p>
+				<input
+					placeholder="Добавить описание профиля"
+					onChange={handleChangeProfile}
+				/>
+				<button onClick={newDetailProfile}>Добавить</button>
+				{/* <p>{items.rate_as_employee}</p>
+				<p>{items.rate_as_customer}</p> */}
+
 				<div className="userpage_contact">
 					<div className="userpage_active_contact">
 						<h1>Контакты для связи</h1>
 						{items &&
 							items.links_to_communicate &&
 							items.links_to_communicate.map((item) => (
-								<>
+								<div>
 									{item.name}
 									{item.link}
-								</>
+								</div>
 							))}
 					</div>
 					<div className="userpage_new_contact">
