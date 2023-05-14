@@ -7,7 +7,11 @@ export default function useFetchData(url) {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const result = await axios.get(url);
+				const result = await axios.get(url, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+					},
+				});
 				setData(result.data);
 			} catch (error) {
 				console.error(error);
