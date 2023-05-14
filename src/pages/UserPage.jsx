@@ -52,25 +52,33 @@ const UserPage = () => {
 			<Header></Header>
 			<main className="userpage">
 				<h1>{items.customer_description}</h1>
-				<div>
-					<p>Контакты для связи</p>
-					{items &&
-						items.links_to_communicate &&
-						items.links_to_communicate.map((item) => (
-							<>
-								{item.name}
-								{item.link}
-							</>
-						))}
-					<input
-						placeholder="Название контакта"
-						onChange={handleChangeContact}
-					/>
-					<input placeholder="Сам контакт" onChange={handleChangeContactLink} />
-					<button onClick={newContact}>Создать контакт для связи </button>
+				<div className="userpage_contact">
+					<div className="userpage_active_contact">
+						<h1>Контакты для связи</h1>
+						{items &&
+							items.links_to_communicate &&
+							items.links_to_communicate.map((item) => (
+								<>
+									{item.name}
+									{item.link}
+								</>
+							))}
+					</div>
+					<div className="userpage_new_contact">
+						<p>Cоздать новый контакт для связи</p>
+						<input
+							placeholder="Название контакта"
+							onChange={handleChangeContact}
+						/>
+						<input
+							placeholder="Сам контакт"
+							onChange={handleChangeContactLink}
+						/>
+						<button onClick={newContact}>Создать контакт для связи </button>
+					</div>
 				</div>
 
-				<p>Созданные заказы</p>
+				<h1>Созданные заказы</h1>
 				<div className="userpage_orders">
 					{items &&
 						items.customer_orders &&
