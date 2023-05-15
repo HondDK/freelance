@@ -81,7 +81,7 @@ const OrdersPage = () => {
 				<article className="block_orders">
 					<h1>Заказы({filteredItems.length})</h1>
 
-					{!filteredItems.length > 0 ? (
+					{filteredItems.length > 0 ? (
 						filteredItems.map((item) => (
 							<Link to={`/order_detail/${item.uuid}`} key={item.uuid}>
 								<div className="block_order">

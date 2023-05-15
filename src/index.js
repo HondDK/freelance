@@ -9,6 +9,7 @@ import NewOrderCreate from "./pages/NewOrderCreate";
 import OrderDetailPage from "./pages/OrderDetailPage";
 import LoginPage from "./pages/LoginPage";
 import UserPage from "./pages/UserPage";
+import UserProfile from "./pages/UserProfile";
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
 	{
 		path: "/profile",
 		element: <UserPage />,
+	},
+	{
+		path: "/user_profile/:user",
+		element: <UserProfile />,
 	},
 	{
 		path: "/new_order_create",

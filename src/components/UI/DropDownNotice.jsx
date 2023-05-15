@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useFetch from "./../../hooks/useFetch";
+import { Link } from "react-router-dom";
 const DropdownNotice = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -18,9 +19,19 @@ const DropdownNotice = () => {
 			</button>
 			{isOpen && (
 				<ul className="dropdown-menu">
-					<li>Option 1</li>
-					<li>Option 2</li>
-					<li>Option 3</li>
+					{items &&
+						items.results &&
+						items.results.map((item) => (
+							<Link to={`/user_profile/${item.order.user}`} key={item.uuid}>
+								<li>
+									<p>Пользователь готов выполнить заказ!</p>
+									<p>Заказ: {item.order.title}</p>
+									<p>Сообщение: {item.text}</p>
+									<p>Цена: {item.suggest_price}</p>
+									<p>Дедлайн: {item.proposed_deadline}</p>
+								</li>
+							</Link>
+						))}
 				</ul>
 			)}
 		</div>
