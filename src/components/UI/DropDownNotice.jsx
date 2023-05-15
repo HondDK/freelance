@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-
+import useFetch from "./../../hooks/useFetch";
 const DropdownNotice = () => {
-	const [isOpen, setIsOpen] = useState(false); // состояние для открытия/закрытия выпадающего списка
+	const [isOpen, setIsOpen] = useState(false);
 
+	const items = useFetch(
+		"http://165.232.118.51:8001/freelance/orders/order_responses/"
+	);
+	console.log(items);
 	const toggleDropdown = () => {
-		setIsOpen(!isOpen); // обновляем состояние isOpen при каждом клике на выпадающий список
+		setIsOpen(!isOpen);
 	};
 
 	return (
