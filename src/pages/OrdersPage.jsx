@@ -5,6 +5,9 @@ import Footer from "../components/UI/Footer";
 import { Link } from "react-router-dom";
 
 const OrdersPage = () => {
+	const itemsPerPage = 10; // Number of items per page
+	const [currentPage, setCurrentPage] = useState(1); // Current page number
+
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
 	);
@@ -14,8 +17,9 @@ const OrdersPage = () => {
 	);
 
 	const [items, setItems] = useState([]);
+	const offset = (currentPage - 1) * itemsPerPage;
 	const noSortedItems = useFetch(
-		"http://165.232.118.51:8001/freelance/orders/orders"
+		`http://165.232.118.51:8001/freelance/orders/orders?offset=${offset}&limit=${itemsPerPage}`
 	);
 
 	useEffect(() => {
@@ -60,6 +64,16 @@ const OrdersPage = () => {
 		  )
 		: [];
 
+	function goToPreviousPage() {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	}
+
+	function goToNextPage() {
+		setCurrentPage(currentPage + 1);
+	}
+
 	return (
 		<>
 			<Header />
@@ -85,6 +99,17 @@ const OrdersPage = () => {
 							</div>
 						</Link>
 					))}
+					<div className="pagination_buttons">
+						<button onClick={goToPreviousPage} disabled={currentPage === 1}>
+							Предыдущая страница
+						</button>
+						<button
+							onClick={goToNextPage}
+							disabled={filteredItems.length < itemsPerPage}
+						>
+							Следующая страница
+						</button>
+					</div>
 				</article>
 
 				<aside className="aside_orders_page">
@@ -141,6 +166,7 @@ const OrdersPage = () => {
 					</div>
 				</aside>
 			</main>
+			<Footer />
 		</>
 	);
 };

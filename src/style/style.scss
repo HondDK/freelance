@@ -114,10 +114,11 @@ main {
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: repeat(2, 1fr);
+		grid-auto-rows: minmax(0, auto);
 		grid-row-gap: 20px;
 		margin: 0;
-
 		overflow: hidden;
+
 		.block_order {
 			display: grid;
 			grid-template-columns: repeat(1, 1fr);
@@ -131,7 +132,6 @@ main {
 			background: #59ad67;
 			border-radius: 15px;
 			transition: all 0.3s ease-out;
-
 			cursor: pointer;
 
 			.head {
@@ -150,6 +150,7 @@ main {
 				grid-area: c;
 				display: flex;
 				padding: 15px;
+
 				.tag {
 					width: 95px;
 					height: 24px;
@@ -163,6 +164,30 @@ main {
 				}
 			}
 		}
+
+		.pagination_buttons {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 99%;
+			justify-content: space-between;
+			button {
+				width: 300px;
+
+				height: 40px;
+				text-align: center;
+				background: #59ad67;
+				border-radius: 15px;
+				border-style: none;
+				color: white;
+				transition: all 0.3s ease-out;
+				cursor: pointer;
+			}
+			:hover {
+				border-radius: 0.5rem;
+			}
+		}
+
 		:hover {
 			border-radius: 0.5rem;
 		}
