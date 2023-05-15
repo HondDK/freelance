@@ -8,7 +8,7 @@ const OrderDetailPage = () => {
 	const items = useFetch(
 		`http://165.232.118.51:8001/freelance/orders/orders/${uuid}`
 	);
-
+	const [isSent, setIsSent] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	function openSubmitOrder() {
 		setIsOpen(!isOpen);
@@ -30,29 +30,32 @@ const OrderDetailPage = () => {
 	function submitOrder(e) {
 		e.preventDefault();
 		setIsOpen(!isOpen);
-		const post = {
-			text: text,
-			suggest_price: price,
-			proposed_deadline: deadline,
-			order: uuid,
-		};
+		if (!isSent) {
+			const post = {
+				text: text,
+				suggest_price: price,
+				proposed_deadline: deadline,
+				order: uuid,
+			};
 
-		axios
-			.post(
-				"http://165.232.118.51:8001/freelance/orders/order_responses/",
-				post,
-				{
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-					},
-				}
-			)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
+			axios
+				.post(
+					"http://165.232.118.51:8001/freelance/orders/order_responses/",
+					post,
+					{
+						headers: {
+							Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+						},
+					}
+				)
+				.then((response) => {
+					console.log(response);
+					setIsSent(true);
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
 	}
 
 	return (
@@ -75,10 +78,13 @@ const OrderDetailPage = () => {
 										<div className="tag">{tag.name}</div>
 									))}
 							</div>
-							<button onClick={openSubmitOrder}>Откликнуться</button>
+							<button disabled={isSent} onClick={openSubmitOrder}>
+								{(!isSent && <span>Откликнуться </span>) || (
+									<span>Отклик отправлен!</span>
+								)}
+							</button>
 						</>
 					)}
-
 					{isOpen && (
 						<div className="order_detail_page_detai_dropdown">
 							<input
@@ -87,7 +93,7 @@ const OrderDetailPage = () => {
 								placeholder="Сообщение заказчику"
 							/>
 							<input
-								type="text"
+								type="number"
 								onChange={handleChangePrice}
 								placeholder="За какую цену готовы взяться"
 							/>
