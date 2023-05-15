@@ -5,8 +5,8 @@ import Footer from "../components/UI/Footer";
 import { Link } from "react-router-dom";
 
 const OrdersPage = () => {
-	const itemsPerPage = 10; // Number of items per page
-	const [currentPage, setCurrentPage] = useState(1); // Current page number
+	const itemsPerPage = 10;
+	const [currentPage, setCurrentPage] = useState(1);
 
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
@@ -81,24 +81,30 @@ const OrdersPage = () => {
 				<article className="block_orders">
 					<h1>Заказы({filteredItems.length})</h1>
 
-					{filteredItems.map((item) => (
-						<Link to={`/order_detail/${item.uuid}`} key={item.uuid}>
-							<div className="block_order">
-								<>
-									<p className="head">{item.title}</p>
-									<img className="block_order_img" src="" alt="" />
-									<div className="tags">
-										{item.tags.map((tag) => (
-											<div key={tag.uuid} className="tag">
-												{tag.name}
-											</div>
-										))}
-									</div>
-									<span className="price">{item.price}₸</span>
-								</>
-							</div>
-						</Link>
-					))}
+					{!filteredItems.length > 0 ? (
+						filteredItems.map((item) => (
+							<Link to={`/order_detail/${item.uuid}`} key={item.uuid}>
+								<div className="block_order">
+									<>
+										<p className="head">{item.title}</p>
+										<img className="block_order_img" src="" alt="" />
+										<div className="tags">
+											{item.tags.map((tag) => (
+												<div key={tag.uuid} className="tag">
+													{tag.name}
+												</div>
+											))}
+										</div>
+										<span className="price">{item.price}₸</span>
+									</>
+								</div>
+							</Link>
+						))
+					) : (
+						<div className="block_order">
+							<p>ПУСТО</p>
+						</div>
+					)}
 					<div className="pagination_buttons">
 						<button onClick={goToPreviousPage} disabled={currentPage === 1}>
 							Предыдущая страница
