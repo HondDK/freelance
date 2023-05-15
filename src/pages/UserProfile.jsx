@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../components/UI/Header";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-
+import axios from "axios";
 const UserProfile = () => {
 	const { user } = useParams();
 	const items = useFetch(
@@ -17,6 +17,30 @@ const UserProfile = () => {
 		console.log(items);
 		console.log(data);
 	}, [items, data]);
+
+	function submitOrder(uuid, deadline) {
+		const post = {
+			employee_id: user,
+			deadline_date: deadline,
+		};
+
+		axios
+			.post(
+				`http://165.232.118.51:8001/freelance/orders/orders/${uuid}/choose_employee`,
+				post,
+				{
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+					},
+				}
+			)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
 
 	return (
 		<div>
@@ -50,7 +74,11 @@ const UserProfile = () => {
 								<span>Сообщение: {item.text}</span>
 								<span>Дедлайн: {item.proposed_deadline}</span>
 								<span>Цена: {item.suggest_price}</span>
-								<button>Принять</button>
+								<button
+									onClick={() => submitOrder(item.uuid, item.proposed_deadline)}
+								>
+									Принять
+								</button>
 							</div>
 						))}
 				</div>
