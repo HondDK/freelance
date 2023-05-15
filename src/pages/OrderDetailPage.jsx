@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import Header from "../components/UI/Header";
+import Time from "../components/Time";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 const OrderDetailPage = () => {
@@ -8,6 +9,8 @@ const OrderDetailPage = () => {
 	const items = useFetch(
 		`http://165.232.118.51:8001/freelance/orders/orders/${uuid}`
 	);
+	console.log(items);
+
 	const [isSent, setIsSent] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	function openSubmitOrder() {
@@ -67,7 +70,7 @@ const OrderDetailPage = () => {
 						<h1>{items.title}</h1>
 						<h1>{items.price}₸</h1>
 					</div>
-					<p>{items.created}</p>
+					<Time props={items.created}></Time>
 					<p>{items.description}</p>
 					{!isOpen && (
 						<>
@@ -110,6 +113,9 @@ const OrderDetailPage = () => {
 				<aside className="order_detail_page_contacts">
 					<p>{items.creator_username}</p>
 					<p>Контакты заказчика</p>
+					{items &&
+						items.links_to_communicate &&
+						items.links_to_communicate.map((item) => <span>{item.link}</span>)}
 				</aside>
 			</main>
 		</>
