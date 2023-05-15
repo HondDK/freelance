@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Header from "../components/UI/Header";
+import { useNavigate } from "react-router-dom";
 const RegPage = () => {
-
-	
+	const navigate = useNavigate();
 	const [login, setLogin] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
-
 	const [err, setErr] = useState(false);
 
 	function handleSubmit(e) {
 		e.preventDefault();
+		if (
+			login.trim() === "" ||
+			password.trim() === "" ||
+			username.trim() === ""
+		) {
+			setErr(true);
+			return;
+		}
+		if (password.length < 8) {
+			setErr(true);
+			return;
+		}
 		const post = {
 			username: login,
 			password: password,
@@ -23,6 +34,7 @@ const RegPage = () => {
 			.post("http://165.232.118.51:8001/freelance/auth/register/", post)
 			.then((response) => {
 				console.log(response);
+				navigate("/login");
 			})
 			.catch((error) => {
 				console.error(error);
@@ -33,9 +45,11 @@ const RegPage = () => {
 	function handleChangeLogin(e) {
 		setLogin(e.target.value);
 	}
+
 	function handleChangePass(e) {
 		setPassword(e.target.value);
 	}
+
 	function handleChangeName(e) {
 		setUsername(e.target.value);
 	}
@@ -52,29 +66,28 @@ const RegPage = () => {
 						placeholder="Логин"
 						value={login}
 						onChange={handleChangeLogin}
-					></input>
+					/>
 					<input
 						type="text"
 						name="name"
 						placeholder="Имя пользователя"
 						value={username}
 						onChange={handleChangeName}
-					></input>
+					/>
 					<input
 						type="password"
 						placeholder="Пароль"
 						value={password}
 						onChange={handleChangePass}
-					></input>
-					{err ? (
+					/>
+					{err && (
 						<span style={{ color: "red" }}>
-							Нужно больше 8 символов в пароле
+							{password.length < 8
+								? "Пароль должен содержать минимум 8 символов."
+								: "Пожалуйста, заполните все поля."}
 						</span>
-					) : (
-						<span></span>
 					)}
-
-					<button>Зарегистроваться</button>
+					<button>Зарегистрироваться</button>
 				</form>
 			</main>
 		</>

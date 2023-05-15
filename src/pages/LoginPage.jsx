@@ -2,14 +2,24 @@ import React, { useState } from "react";
 import Header from "../components/UI/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
 	const navigate = useNavigate();
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [err, setErr] = useState("");
 
 	const handleLogin = (e) => {
 		e.preventDefault();
+		if (username.trim() === "" || password.trim() === "") {
+			setErr("Пожалуйста, заполните все поля.");
+			return;
+		}
+		if (password.length < 8) {
+			setErr("Пароль должен содержать минимум 8 символов.");
+			return;
+		}
 		axios
 			.post("http://165.232.118.51:8001/freelance/token/", {
 				username: username,
@@ -22,6 +32,7 @@ const LoginPage = () => {
 			})
 			.catch((error) => {
 				console.error(error);
+				setErr(error.response.data.detail);
 			});
 		console.log(
 			localStorage.getItem("access_token"),
@@ -32,6 +43,7 @@ const LoginPage = () => {
 	function handleChangeUser(e) {
 		setUsername(e.target.value);
 	}
+
 	function handleChangePass(e) {
 		setPassword(e.target.value);
 	}
@@ -48,17 +60,16 @@ const LoginPage = () => {
 						placeholder="Логин"
 						value={username}
 						onChange={handleChangeUser}
-					></input>
+					/>
 					<input
 						type="password"
 						placeholder="Пароль"
 						value={password}
 						onChange={handleChangePass}
-					></input>
+					/>
 
-					<span style={{ color: "red" }}>Нужно больше 8 символов в пароле</span>
-
-					<button>Зарегистроваться</button>
+					{err && <span style={{ color: "red" }}>{err}</span>}
+					<button>Войти</button>
 				</form>
 			</main>
 		</>

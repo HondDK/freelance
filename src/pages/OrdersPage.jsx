@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
 import { Link } from "react-router-dom";
+
 const OrdersPage = () => {
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
@@ -22,20 +23,20 @@ const OrdersPage = () => {
 	}, [noSortedItems]);
 
 	const [tags, setTags] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [searchQuery, setSearchQuery] = useState("");
 
 	function selectTag(e) {
-		const selectedTags = [e, ...tags]; // добавляем новый тег в список выбранных
-		setTags(selectedTags); // сохраняем список выбранных тегов в состоянии
-		const tagUuids = selectedTags.join("&tags="); // объединяем все выбранные теги в строку
+		const selectedTags = [e, ...tags];
+		setTags(selectedTags);
+		const tagUuids = selectedTags.join("&tags=");
 		fetch(`http://165.232.118.51:8001/freelance/orders/orders?tags=${tagUuids}`)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
 	}
 
-	const [categories, setCategories] = useState([]);
-
 	function selectCategory(e) {
-		const selectedCategory = [e, ...tags];
+		const selectedCategory = [e, ...categories];
 		setCategories(selectedCategory);
 		const categoryUuids = selectedCategory.join("&categories=");
 		fetch(
@@ -51,37 +52,48 @@ const OrdersPage = () => {
 		setTags([]);
 	}
 
+	const filteredItems = items.results
+		? items.results.filter(
+				(item) =>
+					item.title &&
+					item.title.toLowerCase().includes((searchQuery ?? "").toLowerCase())
+		  )
+		: [];
+
 	return (
 		<>
 			<Header />
 			<main className="orders_page">
 				<article className="block_orders">
-					<h1>Заказы({items.count})</h1>
+					<h1>Заказы({filteredItems.length})</h1>
 
-					{items &&
-						items.results &&
-						items.results.map((item) => (
-							<Link to={`/order_detail/${item.uuid}`}>
-								<div key={item.uuid} className="block_order">
-									<>
-										<p className="head">{item.title}</p>
-										<img className="block_order_img" src="" alt="" />
-										<div className="tags">
-											{item.tags.map((tag) => (
-												<div key={tag.uuid} className="tag">
-													{tag.name}
-												</div>
-											))}
-										</div>
-										<span className="price">{item.price}₸</span>
-									</>
-								</div>
-							</Link>
-						))}
+					{filteredItems.map((item) => (
+						<Link to={`/order_detail/${item.uuid}`} key={item.uuid}>
+							<div className="block_order">
+								<>
+									<p className="head">{item.title}</p>
+									<img className="block_order_img" src="" alt="" />
+									<div className="tags">
+										{item.tags.map((tag) => (
+											<div key={tag.uuid} className="tag">
+												{tag.name}
+											</div>
+										))}
+									</div>
+									<span className="price">{item.price}₸</span>
+								</>
+							</div>
+						</Link>
+					))}
 				</article>
 
 				<aside className="aside_orders_page">
-					<input type="text" />
+					<input
+						type="text"
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+					/>
+
 					<button onClick={clearTags}>Cбросить фильтрацию</button>
 					<div className="aside_text">
 						<p>Выбор по категориям</p>
