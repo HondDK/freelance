@@ -2,49 +2,55 @@ import React, { useEffect } from "react";
 import Header from "../components/UI/Header";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+
 const UserProfile = () => {
 	const { user } = useParams();
 	const items = useFetch(
 		`http://165.232.118.51:8001/freelance/auth/users/${user}`
 	);
 
+	const data = useFetch(
+		"http://165.232.118.51:8001/freelance/orders/order_responses/"
+	);
+
 	useEffect(() => {
 		console.log(items);
-	}, [items]);
+		console.log(data);
+	}, [items, data]);
 
 	return (
 		<div>
-			<Header></Header>
+			<Header />
 			<main className="userpage">
-				<h1>{items.customer_description}</h1>
-				<p>{items.employee_description}</p>
-				<div className="userpage_contact">
-					<div className="userpage_active_contact">
-						<h1>Контакты для связи с пользователем</h1>
-						{items &&
-							items.links_to_communicate &&
-							items.links_to_communicate.map((item) => (
-								<div>
-									{item.name}
-									{item.link}
-								</div>
-							))}
-					</div>
-				</div>
-				<h1>Созданные пользователем заказы</h1>
-				<div className="userpage_orders">
-					{items &&
-						items.customer_orders &&
-						items.customer_orders.map((item) => (
-							<div className="userpage_order">
-								{item.title} {item.price}₸ {item.is_done}
-								<div className="tags">
-									{item.tags.map((tag) => (
-										<div key={tag.uuid} className="tag">
-											{tag.name}
+				{items && (
+					<>
+						<h1>{items.customer_description}</h1>
+						<p>{items.employee_description}</p>
+						<div className="userpage_contact">
+							<div className="userpage_active_contact">
+								<h1>Контакты для связи с пользователем</h1>
+								{items.links_to_communicate &&
+									items.links_to_communicate.map((item) => (
+										<div key={item.name}>
+											{item.name}
+											{item.link}
 										</div>
 									))}
-								</div>
+							</div>
+						</div>
+					</>
+				)}
+				<h1>Ответы на заказы</h1>
+				<div className="userprofile_orders">
+					{data &&
+						data.results &&
+						data.results.map((item) => (
+							<div key={item.uuid} className="userprofile_order">
+								<span>Заказ: {item.order.title}</span>
+								<span>Сообщение: {item.text}</span>
+								<span>Дедлайн: {item.proposed_deadline}</span>
+								<span>Цена: {item.suggest_price}</span>
+								<button>Принять</button>
 							</div>
 						))}
 				</div>

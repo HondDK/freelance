@@ -513,7 +513,27 @@ main {
 		border-radius: 0.5rem;
 	}
 }
-
+.userprofile_orders {
+	display: flex;
+	flex-direction: column;
+	.userprofile_order {
+		display: flex;
+		flex-direction: column;
+		margin-top: 25px;
+		border-radius: 15px;
+		padding: 15px;
+		background-color: #59ad67;
+		width: 70%;
+		height: 250px;
+		span {
+			margin-top: 15px;
+			color: white;
+		}
+		button {
+			margin-top: 15px;
+		}
+	}
+}
 .dropdown {
 	position: relative;
 	display: inline-block;
