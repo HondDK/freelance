@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/UI/Header";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
+
 const UserPage = () => {
 	const items = useFetch(
 		`http://165.232.118.51:8001/freelance/auth/users/profile`

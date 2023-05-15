@@ -465,6 +465,33 @@ main {
 		border-radius: 0.5rem;
 	}
 }
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+
+	.dropdown-menu {
+		position: absolute;
+		top: 100%; /* чтобы выпадающий список падал вниз от кнопки */
+		left: 0;
+		width: 465px;
+		background-color: #59ad67;
+		border-radius: 15px;
+		color: white;
+		list-style-type: none;
+		padding: 0;
+		margin-top: 5px;
+	}
+}
+.dropdown .dropdown-menu li {
+	padding: 8px 16px;
+	cursor: pointer;
+}
+
+.dropdown .dropdown-menu li:hover {
+	background-color: darkgreen;
+}
+
 footer {
 	padding: 0;
 	margin: 0;

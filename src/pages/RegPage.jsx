@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../components/UI/Header";
 const RegPage = () => {
+
+	
 	const [login, setLogin] = useState("");
 	const [password, setPassword] = useState("");
 	const [username, setUsername] = useState("");
