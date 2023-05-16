@@ -163,20 +163,24 @@ main {
 					overflow: hidden;
 				}
 			}
-			.orders_clear {
-				font-size: 16px;
-				font-family: "Inter", sans-serif;
-				background: #ffffff;
-				border-radius: 15px;
+		}
+		.orders_clear {
+			font-size: 25px;
+			font-family: "Inter", sans-serif;
+			background: #ffffff;
+			border-radius: 15px;
+			border: #000;
+			width: 50%;
+			height: 50%;
+			margin: 0 auto;
 
-				padding: 15px 15px 15px 15px;
-				height: 40px;
-				p {
-					color: black;
-				}
+			padding: 15px 15px 15px 15px;
+			height: 40px;
+			p {
+				text-align: center;
+				color: black;
 			}
 		}
-
 		.pagination_buttons {
 			display: flex;
 			justify-content: center;
@@ -244,7 +248,6 @@ main {
 			width: 180px;
 			height: 40px;
 			text-align: center;
-			border-radius: 5px;
 			background: #59ad67;
 			border-radius: 15px;
 
@@ -255,6 +258,10 @@ main {
 
 			transition: all 0.3s ease-out;
 			cursor: pointer;
+		}
+		.aside_tag {
+			transition: all 0.3s ease-out;
+			border: 1px;
 		}
 		:active {
 			background-color: #ffffff;

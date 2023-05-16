@@ -105,6 +105,7 @@ const OrdersPage = () => {
 							<p>Заказов не найдено...</p>
 						</div>
 					)}
+
 					<div className="pagination_buttons">
 						<button onClick={goToPreviousPage} disabled={currentPage === 1}>
 							Предыдущая страница
@@ -141,9 +142,10 @@ const OrdersPage = () => {
 									className="aside_tag"
 									style={{
 										backgroundColor: categories.includes(item.uuid)
-											? "black"
+											? "white"
 											: "",
-										color: categories.includes(item.uuid) ? "white" : "",
+										color: categories.includes(item.uuid) ? "black" : "",
+										border: categories.includes(item.uuid) ? "solid" : "",
 									}}
 								>
 									{item.name}
@@ -163,8 +165,9 @@ const OrdersPage = () => {
 									onClick={() => selectTag(item.uuid)}
 									className="aside_tag"
 									style={{
-										backgroundColor: tags.includes(item.uuid) ? "black" : "",
-										color: tags.includes(item.uuid) ? "white" : "",
+										backgroundColor: tags.includes(item.uuid) ? "white" : "",
+										color: tags.includes(item.uuid) ? "black" : "",
+										border: tags.includes(item.uuid) ? "solid " : "",
 									}}
 								>
 									{item.name}
