@@ -11,27 +11,29 @@ const DropdownNotice = () => {
 	const toggleDropdown = () => {
 		setIsOpen(!isOpen);
 	};
+	if (!items || !items.results) {
+		return null; // Пока данные загружаются, не отображаем ничего или можно показать спиннер загрузки
+	}
+	const unseenData = items.results.filter((item) => !item.is_seen);
 
 	return (
 		<div className="dropdown">
 			<button className="dropdown-toggle" onClick={toggleDropdown}>
-				Уведомления ({items.count})
+				Уведомления ({items.count > 1 ? `1+` : ""})
 			</button>
 			{isOpen && (
 				<ul className="dropdown-menu">
-					{items &&
-						items.results &&
-						items.results.map((item) => (
-							<Link to={`/notice/`} key={item.uuid}>
-								<li>
-									<p>Пользователь готов выполнить заказ!</p>
-									<p>Заказ: {item.order.title}</p>
-									<p>Сообщение: {item.text}</p>
-									<p>Цена: {item.suggest_price}</p>
-									<p>Дедлайн: {item.proposed_deadline}</p>
-								</li>
-							</Link>
-						))}
+					{unseenData.map((item) => (
+						<Link to={`/notice/`} key={item.uuid}>
+							<li>
+								<p>Пользователь готов выполнить заказ!</p>
+								<p>Заказ: {item.order.title}</p>
+								<p>Сообщение: {item.text}</p>
+								<p>Цена: {item.suggest_price}</p>
+								<p>Дедлайн: {item.proposed_deadline}</p>
+							</li>
+						</Link>
+					))}
 				</ul>
 			)}
 		</div>

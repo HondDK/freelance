@@ -76,20 +76,25 @@ const UserPage = () => {
 			});
 	}
 
+	function deleteOrder(){
+		
+	}
+
 	return (
 		<div>
 			<Header></Header>
 			<main className="userpage">
 				<h1>{items.customer_description}</h1>
 				<p>{items.employee_description}</p>
-				<input
-					placeholder="Добавить описание профиля"
-					onChange={handleChangeProfile}
-				/>
-				<button onClick={newDetailProfile}>Добавить</button>
 				{/* <p>{items.rate_as_employee}</p>
 				<p>{items.rate_as_customer}</p> */}
-
+				<div className="userpage_new_description">
+					<textarea
+						placeholder="Добавить/изменить описание профиля"
+						onChange={handleChangeProfile}
+					/>
+					<button onClick={newDetailProfile}>Добавить</button>
+				</div>
 				<div className="userpage_contact">
 					<div className="userpage_active_contact">
 						<h1>Контакты для связи</h1>
@@ -122,14 +127,8 @@ const UserPage = () => {
 						items.customer_orders &&
 						items.customer_orders.map((item) => (
 							<div className="userpage_order">
-								{item.title} {item.price}₸ {item.is_done}
-								<div className="tags">
-									{item.tags.map((tag) => (
-										<div key={tag.uuid} className="tag">
-											{tag.name}
-										</div>
-									))}
-								</div>
+								{item.title} {item.is_done}
+								<button onClick={deleteOrder}>Удалить заказ</button>
 							</div>
 						))}
 				</div>

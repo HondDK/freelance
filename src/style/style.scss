@@ -4,6 +4,9 @@ body {
 }
 input {
 	font-family: "Inter", sans-serif;
+	padding: 0;
+	text-align: top;
+	overflow: auto;
 }
 button {
 	font-family: "Inter", sans-serif;
@@ -449,6 +452,17 @@ main {
 .userpage {
 	display: flex;
 	flex-direction: column;
+	.userpage_new_description {
+		display: flex;
+		flex-direction: column;
+		textarea {
+			height: 200px;
+		}
+		button {
+			margin-top: 15px;
+			background-color: #59ad67;
+		}
+	}
 	.userpage_contact {
 		display: flex;
 		flex-direction: column;
@@ -459,7 +473,7 @@ main {
 			flex-direction: column;
 			padding: 15px;
 			margin-top: 30px;
-			width: 30%;
+			width: 100%;
 			color: white;
 			background-color: #59ad67;
 			border-radius: 15px;
@@ -467,8 +481,9 @@ main {
 				border-radius: 5px;
 				margin-top: 5px;
 				margin-bottom: 5px;
+				height: 30px;
+				text-align: center;
 				transition: all 0.3s ease-out;
-				width: 30%;
 			}
 			button {
 				background-color: white;
@@ -487,7 +502,7 @@ main {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: repeat(2, 1fr);
-
+		grid-column-gap: 70px;
 		.userpage_order {
 			color: white;
 			display: flex;
@@ -529,7 +544,7 @@ main {
 		color: white;
 		height: 35px;
 		width: 150px;
-
+		margin-top: 15px;
 		transition: all 0.3s ease-out;
 		cursor: pointer;
 	}
