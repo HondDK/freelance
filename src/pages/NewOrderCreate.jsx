@@ -45,8 +45,20 @@ const NewOrderCreate = () => {
 		setPrice(e.target.value);
 	}
 
+	const [err, setErr] = useState(false);
+
 	function handleSubmit(e) {
 		e.preventDefault();
+
+		if (
+			title.trim() === "" ||
+			description.trim() === "" ||
+			price.trim() === ""
+		) {
+			setErr(true);
+			return;
+		}
+
 		const post = {
 			title: title,
 			description: description,
@@ -85,14 +97,18 @@ const NewOrderCreate = () => {
 					/>
 					<label>Цена за заказ в тенге </label>
 					<input type="number" onChange={handleChangePrice} />
+					{err && (
+						<span style={{ color: "red" }}>
+							Пожалуйста, заполните все поля.
+						</span>
+					)}
 					<button onClick={handleSubmit}>Создать заказ</button>
 				</form>
 
 				<aside className="aside_orders_page">
-					<input type="text" />
 					<button onClick={clearTags}>Cбросить выбор</button>
 					<div className="aside_text">
-						<p>Выбор по категориям</p>
+						<p>Выбрать категории</p>
 					</div>
 					<hr />
 					<div className="aside_tags">
@@ -115,7 +131,7 @@ const NewOrderCreate = () => {
 							))}
 					</div>
 					<div className="aside_text">
-						<p>Выбор по тегам</p>
+						<p>Выбрать теги</p>
 					</div>
 					<hr />
 					<div className="aside_tags">
