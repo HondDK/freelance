@@ -22,7 +22,7 @@ const DropdownNotice = () => {
 					{items &&
 						items.results &&
 						items.results.map((item) => (
-							<Link to={`/user_profile/${item.order.user}`} key={item.uuid}>
+							<Link to={`/notice/`} key={item.uuid}>
 								<li>
 									<p>Пользователь готов выполнить заказ!</p>
 									<p>Заказ: {item.order.title}</p>

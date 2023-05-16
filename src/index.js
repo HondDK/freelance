@@ -11,6 +11,7 @@ import UserPage from "./pages/UserPage";
 import UserProfile from "./pages/UserProfile";
 
 import "./style/style.scss";
+import Notice from "./pages/Notice";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
 	{
 		path: "/profile",
 		element: <UserPage />,
+	},
+	{
+		path: "/notice",
+		element: <Notice />,
 	},
 	{
 		path: "/user_profile/:user",

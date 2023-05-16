@@ -101,9 +101,9 @@ const OrderDetailPage = () => {
 								placeholder="За какую цену готовы взяться"
 							/>
 							<input
-								type="text"
+								type="date"
 								onChange={handleChangeDeadline}
-								placeholder="Предлагаемый дедлайн"
+								placeholder="Предлагаемый дедлайн (Писать в формате год-месяц-день)"
 							/>
 							<button onClick={submitOrder}>Отправить</button>
 						</div>
