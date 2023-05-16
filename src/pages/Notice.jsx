@@ -17,7 +17,7 @@ const Notice = () => {
 			is_seen: true,
 		};
 		axios
-			.put(
+			.patch(
 				`http://165.232.118.51:8001/freelance/orders/order_responses/${uuid}/`,
 				post,
 				{
@@ -66,7 +66,7 @@ const Notice = () => {
 	}
 
 	const unseenData = data.results.filter((item) => !item.is_seen);
-    
+
 	return (
 		<div>
 			<Header></Header>
