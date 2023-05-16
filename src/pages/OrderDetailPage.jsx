@@ -66,14 +66,18 @@ const OrderDetailPage = () => {
 			<Header />
 			<main className="order_detail_page">
 				<article className="order_detail_page_detail">
-					<div className="order_detail_page_detail_text_head">
-						<h1>{items.title}</h1>
-						<h1>{items.price}₸</h1>
+					<div>
+						<div className="order_detail_page_detail_text_head">
+							<h1>{items.title}</h1>
+							<h1>{items.price}₸</h1>
+						</div>
+						<Time props={items.created}></Time>
+						<p>{items.is_done ? "Выполнено" : "Не выполнено"}</p>
 					</div>
-					<Time props={items.created}></Time>
-					<p>{items.description}</p>
+					<div>{items.description}</div>
+
 					{!isOpen && (
-						<>
+						<div className="tags_btn">
 							<div className="order_detail_page_detail_text_tags">
 								{items &&
 									items.tags &&
@@ -81,12 +85,14 @@ const OrderDetailPage = () => {
 										<div className="tag">{tag.name}</div>
 									))}
 							</div>
-							<button disabled={isSent} onClick={openSubmitOrder}>
-								{(!isSent && <span>Откликнуться </span>) || (
-									<span>Отклик отправлен!</span>
-								)}
-							</button>
-						</>
+							{!items.is_done && (
+								<button className="btn_send" disabled={isSent} onClick={openSubmitOrder}>
+									{(!isSent && <span>Откликнуться </span>) || (
+										<span>Отклик отправлен!</span>
+									)}
+								</button>
+							)}
+						</div>
 					)}
 					{isOpen && (
 						<div className="order_detail_page_detai_dropdown">

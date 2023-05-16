@@ -12,7 +12,7 @@ export default function TimeComponent({ props }) {
 	const seconds = dateTime.getSeconds();
 
 	return (
-		<div>
+		<div className="time">
 			<p>Дата создания: {`${day}-${month}-${year}`}</p>
 			<p>Время: {`${hours}:${minutes}:${seconds}`}</p>
 		</div>
