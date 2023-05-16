@@ -101,8 +101,8 @@ const OrdersPage = () => {
 							</Link>
 						))
 					) : (
-						<div className="block_order">
-							<p>ПУСТО</p>
+						<div className="orders_clear">
+							<p>Заказов не найдено...</p>
 						</div>
 					)}
 					<div className="pagination_buttons">
@@ -122,6 +122,7 @@ const OrdersPage = () => {
 					<input
 						type="text"
 						value={searchQuery}
+						placeholder="Поиск заказов"
 						onChange={(e) => setSearchQuery(e.target.value)}
 					/>
 

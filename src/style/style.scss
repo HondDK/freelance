@@ -163,6 +163,18 @@ main {
 					overflow: hidden;
 				}
 			}
+			.orders_clear {
+				font-size: 16px;
+				font-family: "Inter", sans-serif;
+				background: #ffffff;
+				border-radius: 15px;
+
+				padding: 15px 15px 15px 15px;
+				height: 40px;
+				p {
+					color: black;
+				}
+			}
 		}
 
 		.pagination_buttons {
@@ -206,9 +218,12 @@ main {
 		border: none;
 		width: 388px;
 		height: 39px;
-		background: rgba(89, 173, 103, 0.7);
+		font-size: 18px;
+		text-align: center;
 		border-radius: 15px;
-
+		background: url(../../public/lup.png) no-repeat 97% 13px;
+		background-size: 15px;
+		background-color: rgba(89, 173, 103, 0.7);
 		transition: all 0.3s ease-out;
 		cursor: pointer;
 	}
