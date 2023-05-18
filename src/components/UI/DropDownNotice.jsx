@@ -19,7 +19,7 @@ const DropdownNotice = () => {
 	return (
 		<div className="dropdown">
 			<button className="dropdown-toggle" onClick={toggleDropdown}>
-				Уведомления ({items.count > 1 ? `1+` : ""})
+				Уведомления ({items.count})
 			</button>
 			{isOpen && (
 				<ul className="dropdown-menu">

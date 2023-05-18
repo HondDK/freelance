@@ -19,6 +19,7 @@ const UserProfile = () => {
 		console.log(data);
 	}, [items, data]);
 
+
 	return (
 		<div>
 			<Header />

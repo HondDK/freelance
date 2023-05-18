@@ -76,8 +76,19 @@ const UserPage = () => {
 			});
 	}
 
-	function deleteOrder(){
-		
+	function deleteOrder(uuid) {
+		axios
+			.delete(`http://165.232.118.51:8001/freelance/orders/orders/${uuid}`, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+				},
+			})
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 	return (
@@ -128,7 +139,9 @@ const UserPage = () => {
 						items.customer_orders.map((item) => (
 							<div className="userpage_order">
 								{item.title} {item.is_done}
-								<button onClick={deleteOrder}>Удалить заказ</button>
+								<button onClick={() => deleteOrder(item.uuid)}>
+									Удалить заказ
+								</button>
 							</div>
 						))}
 				</div>

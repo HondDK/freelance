@@ -13,13 +13,9 @@ const Notice = () => {
 	}, [data]);
 
 	function markAsSeen(uuid) {
-		const post = {
-			is_seen: true,
-		};
 		axios
-			.patch(
+			.delete(
 				`http://165.232.118.51:8001/freelance/orders/order_responses/${uuid}/`,
-				post,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -73,30 +69,36 @@ const Notice = () => {
 
 			<div className="userprofile_orders">
 				<h1>Ответы на заказы</h1>
-				{unseenData.map((item) => (
-					<div key={item.uuid} className="userprofile_order">
-						<span>Заказ: {item.order.title}</span>
-						<span>Сообщение: {item.text}</span>
-						<span>Дедлайн: {item.proposed_deadline}</span>
-						<span>Цена: {item.suggest_price}</span>{" "}
-						<div>
-							<Link to={`/user_profile/${item.user}`} relative="path">
-								<button>Посмотреть профиль исполнителя</button>
-							</Link>
-							<button onClick={() => markAsSeen(item.uuid)}>
-								Отметить как прочитаное и удалить
+				{unseenData.length > 0 ? (
+					unseenData.map((item) => (
+						<div key={item.uuid} className="userprofile_order">
+							<span>Заказ: {item.order.title}</span>
+							<span>Сообщение: {item.text}</span>
+							<span>Дедлайн: {item.proposed_deadline}</span>
+							<span>Цена: {item.suggest_price}</span>
+							<div>
+								<Link to={`/user_profile/${item.user}`} relative="path">
+									<button>Посмотреть профиль исполнителя</button>
+								</Link>
+								<button onClick={() => markAsSeen(item.uuid)}>Удалить</button>
+							</div>
+							<button
+								disabled={isSent}
+								onClick={() =>
+									submitOrder(
+										item.user,
+										item.proposed_deadline,
+										item.order.uuid
+									)
+								}
+							>
+								{!isSent ? "Принять" : "Заказ принят!"}
 							</button>
 						</div>
-						<button
-							disabled={isSent}
-							onClick={() =>
-								submitOrder(item.user, item.proposed_deadline, item.order.uuid)
-							}
-						>
-							{(!isSent && <>Принять </>) || <>Заказ принят!</>}
-						</button>
-					</div>
-				))}
+					))
+				) : (
+					<div>Ответов не найдено...</div>
+				)}
 			</div>
 		</div>
 	);

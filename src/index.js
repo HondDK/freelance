@@ -28,7 +28,6 @@ const router = createBrowserRouter([
 	{
 		path: "/registration",
 		element: <RegPage />,
-		isPrivate: true,
 	},
 	{
 		path: "/login",
