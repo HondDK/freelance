@@ -8,6 +8,10 @@ input {
 	text-align: top;
 	overflow: auto;
 }
+textarea {
+	font-family: "Inter", sans-serif;
+	padding: 15px;
+}
 button {
 	font-family: "Inter", sans-serif;
 }
@@ -114,11 +118,8 @@ main {
 	}
 	.block_orders {
 		color: white;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(2, 1fr);
-		grid-auto-rows: minmax(0, auto);
-		grid-row-gap: 20px;
+		display: flex;
+		flex-direction: column;
 		margin: 0;
 		overflow: hidden;
 
@@ -303,12 +304,14 @@ main {
 
 	form {
 		display: flex;
-
+		margin-top: 30%;
 		flex-direction: column;
 		input {
+			text-align: center;
+			font-size: 15px;
 			margin-top: 15px;
 			border: none;
-			width: 388px;
+			width: 100%;
 			height: 39px;
 			background: rgba(89, 173, 103, 0.7);
 			border-radius: 15px;
@@ -338,6 +341,18 @@ main {
 		label {
 			font-size: 20px;
 			margin-top: 15px;
+		}
+		textarea {
+			color: #ffffff;
+			margin-top: 15px;
+			border: none;
+			width: 720px;
+			height: 60px;
+			background: rgba(89, 173, 103, 0.7);
+			border-radius: 15px;
+			font-size: 15px;
+			transition: all 0.3s ease-out;
+			cursor: pointer;
 		}
 		input {
 			color: #ffffff;

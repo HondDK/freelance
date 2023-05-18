@@ -90,7 +90,7 @@ const NewOrderCreate = () => {
 					<label>Краткое описание заказа</label>
 					<input onChange={handleChangeTitle} type="text" />
 					<label>Детальное описание заказа, техническое задание </label>
-					<input
+					<textarea
 						type="text"
 						onChange={handleChangeDesctiption}
 						className="new_order_create_form_input"
