@@ -9,11 +9,11 @@ const Header = () => {
 				<h1>FREELANCE</h1>
 			</Link>
 			<div>
-				<DropdownNotice />
-				<Link to="/new_order_create" relative="path">
-					<button>+ cоздать заказ</button>
-				</Link>
 				<LocalStorageComponent>
+					<DropdownNotice />
+					<Link to="/new_order_create" relative="path">
+						<button>+ cоздать заказ</button>
+					</Link>
 					<Link to="/profile" relative="path">
 						<button>Профиль</button>
 					</Link>

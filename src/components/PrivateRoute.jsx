@@ -1,22 +1,19 @@
-import React from "react";
-import { Route, useNavigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 
-const PrivateRoute = ({ element: Element, isAuthenticated, ...rest }) => {
-	const navigate = useNavigate();
+const PrivateRoutes = () => {
+	const auth = { token: localStorage.getItem("access_token") };
+	const location = useLocation();
 
-	return (
-		<Route
-			{...rest}
-			element={
-				isAuthenticated ? (
-					<Element />
-				) : (
-					// Используем navigate для перенаправления на маршрут /login
-					navigate("/login", { replace: true })
-				)
-			}
-		/>
-	);
+	const isLoginPage = location.pathname === "/login";
+	const isRegistrationPage = location.pathname === "/registration";
+
+	if (!auth.token) {
+		return <Navigate to="/login" />;
+	} else if (isLoginPage || isRegistrationPage) {
+		return <Navigate to="/profile" />;
+	} else {
+		return <Outlet />;
+	}
 };
 
-export default PrivateRoute;
+export default PrivateRoutes;
