@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/UI/Header";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const UserPage = () => {
 	const items = useFetch(
 		`http://165.232.118.51:8001/freelance/auth/users/profile`
@@ -145,8 +145,9 @@ const UserPage = () => {
 							</div>
 						))}
 				</div>
-
-				<button onClick={leaveUser}>Выйти из аккаунта</button>
+				<Link to={`/`}>
+					<button onClick={leaveUser}>Выйти из аккаунта</button>
+				</Link>
 			</main>
 		</div>
 	);

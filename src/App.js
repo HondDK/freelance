@@ -20,14 +20,16 @@ function App() {
 				<Routes>
 					<Route element={<MainPage />} path="/" exact />
 					<Route element={<PrivateRoutes />}>
+						<Route element={<LoginPage />} path="/login" />
+						<Route element={<RegPage />} path="/registration" />
+					</Route>
+					<Route element={<PrivateRoutes />}>
 						<Route element={<OrdersPage />} path="/orders" />
 						<Route element={<NewOrderCreate />} path="/new_order_create" />
 						<Route element={<OrderDetailPage />} path="/order_detail/:uuid" />
 						<Route element={<UserPage />} path="/profile" />
 						<Route element={<UserProfile />} path="/user_profile/:user" />
 						<Route element={<Notice />} path="/notice" />
-						<Route element={<LoginPage />} path="/login" />
-						<Route element={<RegPage />} path="/registration" />
 					</Route>
 				</Routes>
 			</Router>

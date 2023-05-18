@@ -8,9 +8,11 @@ const PrivateRoutes = () => {
 	const isRegistrationPage = location.pathname === "/registration";
 
 	if (!auth.token) {
-		return <Navigate to="/login" />;
-	} else if (isLoginPage || isRegistrationPage) {
-		return <Navigate to="/profile" />;
+		if (isLoginPage || isRegistrationPage) {
+			return <Outlet />;
+		} else {
+			return <Navigate to="/login" />;
+		}
 	} else {
 		return <Outlet />;
 	}
