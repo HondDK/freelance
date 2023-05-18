@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import Header from "../components/UI/Header";
+import MainButton from "../components/UI/MainButton";
 const MainPage = () => {
 	return (
 		<>
@@ -13,7 +14,7 @@ const MainPage = () => {
 							выполнить вашу задачу сейчас.
 						</p>
 
-						<button>Найти специалиста</button>
+						<MainButton>Найти специалиста</MainButton>
 					</div>
 					<div className="container">
 						Помогаем работать эффективнее.
@@ -26,9 +27,7 @@ const MainPage = () => {
 				<article>
 					<div className="container">
 						<p>Разработка</p> <p>Сайты “Под ключ”, Бэкенд, Фронтенд и другое</p>{" "}
-						<Link to="/orders" relative="path">
-							<button>Посмотреть</button>
-						</Link>
+						<MainButton>Посмотреть</MainButton>
 					</div>
 					<div className="container">
 						<p>Дизайн</p> <p>Сайты, лендинги, логотипы и другое</p>{" "}
@@ -37,21 +36,21 @@ const MainPage = () => {
 					<div className="container">
 						<p>Тестирование</p>{" "}
 						<p>Сайты, мобильная разработка, софт и другое</p>{" "}
-						<button>Посмотреть</button>
+						<MainButton>Посмотреть</MainButton>
 					</div>
 					<div className="container">
 						<p>Маркетинг</p> <p>SMM, SEO, Контекстная реклама и другое</p>{" "}
-						<button>Посмотреть</button>
+						<MainButton>Посмотреть</MainButton>
 					</div>
 					<div className="container">
 						<p>Контент</p>{" "}
 						<p>Копирайтинг, рератинг, расшифровка аудио и видео и другое</p>{" "}
-						<button>Посмотреть</button>
+						<MainButton>Посмотреть</MainButton>
 					</div>
 					<div className="container">
 						<p>Администрирование</p>{" "}
 						<p>Серверы, компьютерные сети, базы данных и другое</p>{" "}
-						<button>Посмотреть</button>
+						<MainButton>Посмотреть</MainButton>
 					</div>
 				</article>
 			</main>

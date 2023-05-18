@@ -3,7 +3,10 @@ import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
 import useFetch from "../hooks/useFetch";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const NewOrderCreate = () => {
+	const navigate = useNavigate();
 	const itemsCategory = useFetch(
 		"http://165.232.118.51:8001/freelance/orders/categories"
 	);
@@ -75,6 +78,7 @@ const NewOrderCreate = () => {
 			})
 			.then((response) => {
 				console.log(response);
+				navigate("/orders");
 			})
 			.catch((error) => {
 				console.error(error);
@@ -102,6 +106,7 @@ const NewOrderCreate = () => {
 							Пожалуйста, заполните все поля.
 						</span>
 					)}
+
 					<button onClick={handleSubmit}>Создать заказ</button>
 				</form>
 

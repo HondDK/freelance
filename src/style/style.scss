@@ -49,6 +49,7 @@ header {
 main {
 	width: 1252px;
 	margin: 0 auto;
+
 	.container {
 		background-color: #59ad67;
 		color: white;
@@ -59,20 +60,19 @@ main {
 		cursor: pointer;
 	}
 	aside {
+		margin-top: 80px;
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		grid-template-rows: 1fr;
 		grid-column-gap: 80px;
 		grid-row-gap: px;
 		button {
-			font-size: 16px;
 			font-family: "Inter", sans-serif;
-			background: #59ad67;
+			width: 153px;
+			height: 39px;
+			background: #ffffff;
 			border-radius: 15px;
-			margin-right: 25px;
-			color: white;
-			padding: 25px;
-			height: 40px;
+			border: solid;
 
 			cursor: pointer;
 			transition: all 0.3s ease-out;
@@ -355,11 +355,12 @@ main {
 			cursor: pointer;
 		}
 		input {
+			padding: 15px;
 			color: #ffffff;
 			margin-top: 15px;
 			border: none;
-			width: 750px;
-			height: 60px;
+			width: 720px;
+			height: 30px;
 			background: rgba(89, 173, 103, 0.7);
 			border-radius: 15px;
 
