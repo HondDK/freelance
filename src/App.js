@@ -12,6 +12,7 @@ import UserProfile from "./pages/UserProfile";
 import Notice from "./pages/Notice";
 
 import "./style/style.scss";
+import ActiveOrders from "./pages/ActiveOrders";
 
 function App() {
 	return (
@@ -24,6 +25,7 @@ function App() {
 						<Route element={<RegPage />} path="/registration" />
 					</Route>
 					<Route element={<PrivateRoutes />}>
+						<Route element={<ActiveOrders />} path="/active_orders" />
 						<Route element={<OrdersPage />} path="/orders" />
 						<Route element={<NewOrderCreate />} path="/new_order_create" />
 						<Route element={<OrderDetailPage />} path="/order_detail/:uuid" />

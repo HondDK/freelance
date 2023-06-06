@@ -4,7 +4,8 @@ import useFetch from "../hooks/useFetch";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
-const Notice = () => {
+
+const ActiveOrders = () => {
 	const data = useFetch(
 		"http://165.232.69.211:8001/freelance/orders/order_responses/"
 	);
@@ -32,28 +33,40 @@ const Notice = () => {
 	}
 
 	const [isSent, setIsSent] = useState(false);
-	function submitOrder(user, deadline, uuid) {
-		const post = {
-			employee_id: user,
-			deadline_date: deadline,
+
+	function payOrder(uuid, price, orderTitle) {
+		const url = "https://api.yookassa.ru/v3/payments";
+		const auth = {
+			shopId: "503897",
+			secretKey: "test_*gql0X8xgb6-W1Prdbpyxjtndx6c6tsyFG9D1OzaHs2FI",
 		};
-		console.log(uuid);
+		const headers = {
+			"Idempotence-Key": uuid,
+			"Content-Type": "application/json",
+		};
+		const data = {
+			amount: {
+				value: price,
+				currency: "RUB",
+			},
+			capture: true,
+			confirmation: {
+				type: "redirect",
+				return_url: "https://www.example.com/return_url",
+			},
+			description: orderTitle,
+		};
+
 		axios
-			.post(
-				`http://165.232.69.211:8001/freelance/orders/orders/${uuid}/choose_employee/`,
-				post,
-				{
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-					},
-				}
-			)
+			.post(url, data, {
+				u: auth,
+				headers: headers,
+			})
 			.then((response) => {
-				console.log(response);
-				setIsSent(true);
+				console.log("Ответ сервера:", response.data);
 			})
 			.catch((error) => {
-				console.error(error);
+				console.error("Ошибка:", error);
 			});
 	}
 
@@ -62,13 +75,12 @@ const Notice = () => {
 	}
 
 	const unseenData = data.results.filter((item) => !item.is_seen);
-
 	return (
 		<div>
 			<Header></Header>
 
 			<div className="userprofile_orders">
-				<h1>Ответы на заказы</h1>
+				<h1>Принятые заказы</h1>
 				{unseenData.length > 0 ? (
 					unseenData.map((item) => (
 						<div key={item.uuid} className="userprofile_order">
@@ -85,14 +97,10 @@ const Notice = () => {
 							<button
 								disabled={isSent}
 								onClick={() =>
-									submitOrder(
-										item.user,
-										item.proposed_deadline,
-										item.order.uuid
-									)
+									payOrder(item.uuid, item.suggest_price, item.order.title)
 								}
 							>
-								{!isSent ? "Принять" : "Заказ принят!"}
+								Оплатить заказ
 							</button>
 						</div>
 					))
@@ -104,4 +112,4 @@ const Notice = () => {
 	);
 };
 
-export default Notice;
+export default ActiveOrders;

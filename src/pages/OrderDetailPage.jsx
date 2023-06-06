@@ -7,28 +7,34 @@ import axios from "axios";
 const OrderDetailPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const items = useFetch(
-		`http://165.232.118.51:8001/freelance/orders/orders/${uuid}`
+		`http://165.232.69.211:8001/freelance/orders/orders/${uuid}`
 	);
 	console.log(items);
 
 	const [isSent, setIsSent] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+
 	function openSubmitOrder() {
 		setIsOpen(!isOpen);
 	}
 
-	const [text, setText] = useState("");
-	function handleChangeText(e) {
-		setText(e.target.value);
-	}
-	const [price, setPrice] = useState("");
-	function handleChangePrice(e) {
-		setPrice(e.target.value);
-	}
-	const [deadline, setDeadline] = useState("");
-	function handleChangeDeadline(e) {
-		setDeadline(e.target.value);
-	}
+		const [text, setText] = useState("");
+
+		function handleChangeText(e) {
+			setText(e.target.value);
+		}
+
+		const [price, setPrice] = useState("");
+
+		function handleChangePrice(e) {
+			setPrice(e.target.value);
+		}
+
+		const [deadline, setDeadline] = useState("");
+
+		function handleChangeDeadline(e) {
+			setDeadline(e.target.value);
+		}
 
 	function submitOrder(e) {
 		e.preventDefault();
@@ -43,7 +49,7 @@ const OrderDetailPage = () => {
 
 			axios
 				.post(
-					"http://165.232.118.51:8001/freelance/orders/order_responses/",
+					"http://165.232.69.211:8001/freelance/orders/order_responses/",
 					post,
 					{
 						headers: {
@@ -86,7 +92,11 @@ const OrderDetailPage = () => {
 									))}
 							</div>
 							{!items.is_done && (
-								<button className="btn_send" disabled={isSent} onClick={openSubmitOrder}>
+								<button
+									className="btn_send"
+									disabled={isSent}
+									onClick={openSubmitOrder}
+								>
 									{(!isSent && <span>Откликнуться </span>) || (
 										<span>Отклик отправлен!</span>
 									)}

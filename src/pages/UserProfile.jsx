@@ -7,11 +7,11 @@ const UserProfile = () => {
 	const { user } = useParams();
 
 	const items = useFetch(
-		`http://165.232.118.51:8001/freelance/auth/users/${user}`
+		`http://165.232.69.211:8001/freelance/auth/users/${user}`
 	);
 
 	const data = useFetch(
-		"http://165.232.118.51:8001/freelance/orders/order_responses/"
+		"http://165.232.69.211:8001/freelance/orders/order_responses/"
 	);
 
 	useEffect(() => {
