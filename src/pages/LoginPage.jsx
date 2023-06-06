@@ -21,7 +21,7 @@ const LoginPage = () => {
 			return;
 		}
 		axios
-			.post("http://freelance_web:8001/freelance/token/", {
+			.post("http://165.232.69.211:8001/freelance/token/", {
 				username: username,
 				password: password,
 			})
