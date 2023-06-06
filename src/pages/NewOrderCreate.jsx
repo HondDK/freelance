@@ -8,11 +8,11 @@ import { useNavigate } from "react-router-dom";
 const NewOrderCreate = () => {
 	const navigate = useNavigate();
 	const itemsCategory = useFetch(
-		"http://freelance_web:8001/freelance/orders/categories"
+		"http://165.232.69.211:8001/freelance/orders/categories"
 	);
 
 	const itemsTags = useFetch(
-		"http://freelance_web:8001/freelance/orders/tags"
+		"http://165.232.69.211:8001/freelance/orders/tags"
 	);
 
 	const [categories, setCategories] = useState([]);
@@ -71,7 +71,7 @@ const NewOrderCreate = () => {
 		};
 
 		axios
-			.post("http://freelance_web:8001/freelance/orders/orders/", post, {
+			.post("http://165.232.69.211:8001/freelance/orders/orders/", post, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 				},

@@ -7,7 +7,7 @@ import axios from "axios";
 const OrderDetailPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const items = useFetch(
-		`http://freelance_web:8001/freelance/orders/orders/${uuid}`
+		`http://165.232.69.211:8001/freelance/orders/orders/${uuid}`
 	);
 	console.log(items);
 
@@ -49,7 +49,7 @@ const OrderDetailPage = () => {
 
 			axios
 				.post(
-					"http://freelance_web:8001/freelance/orders/order_responses/",
+					"http://165.232.69.211:8001/freelance/orders/order_responses/",
 					post,
 					{
 						headers: {

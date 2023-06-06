@@ -6,7 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const Notice = () => {
 	const data = useFetch(
-		"http://freelance_web:8001/freelance/orders/order_responses/"
+		"http://165.232.69.211:8001/freelance/orders/order_responses/"
 	);
 	useEffect(() => {
 		console.log(data);
@@ -15,7 +15,7 @@ const Notice = () => {
 	function markAsSeen(uuid) {
 		axios
 			.delete(
-				`http://freelance_web:8001/freelance/orders/order_responses/${uuid}/`,
+				`http://165.232.69.211:8001/freelance/orders/order_responses/${uuid}/`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -40,7 +40,7 @@ const Notice = () => {
 		console.log(uuid);
 		axios
 			.post(
-				`http://freelance_web:8001/freelance/orders/orders/${uuid}/choose_employee/`,
+				`http://165.232.69.211:8001/freelance/orders/orders/${uuid}/choose_employee/`,
 				post,
 				{
 					headers: {
