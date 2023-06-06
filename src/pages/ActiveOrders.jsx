@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ActiveOrders = () => {
 	const data = useFetch(
-		"http://freelance_web/freelance/orders/order_responses/"
+		"http://freelance_web:8001/freelance/orders/order_responses/"
 	);
 	useEffect(() => {
 		console.log(data);
@@ -16,7 +16,7 @@ const ActiveOrders = () => {
 	function markAsSeen(uuid) {
 		axios
 			.delete(
-				`http://freelance_web/freelance/orders/order_responses/${uuid}/`,
+				`http://freelance_web:8001/freelance/orders/order_responses/${uuid}/`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("access_token")}`,

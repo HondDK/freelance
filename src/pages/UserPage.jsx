@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const UserPage = () => {
 	const items = useFetch(
-		`http://freelance_web/freelance/auth/users/profile`
+		`http://freelance_web:8001/freelance/auth/users/profile`
 	);
 
 	function leaveUser() {
@@ -36,7 +36,7 @@ const UserPage = () => {
 
 		axios
 			.post(
-				"http://freelance_web/freelance/auth/users/update_profile/",
+				"http://freelance_web:8001/freelance/auth/users/update_profile/",
 				post,
 				{
 					headers: {
@@ -60,7 +60,7 @@ const UserPage = () => {
 
 		axios
 			.post(
-				"http://freelance_web/freelance/orders/link_communicate/",
+				"http://freelance_web:8001/freelance/orders/link_communicate/",
 				post,
 				{
 					headers: {
@@ -78,7 +78,7 @@ const UserPage = () => {
 
 	function deleteOrder(uuid) {
 		axios
-			.delete(`http://freelance_web/freelance/orders/orders/${uuid}`, {
+			.delete(`http://freelance_web:8001/freelance/orders/orders/${uuid}`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("access_token")}`,
 				},
