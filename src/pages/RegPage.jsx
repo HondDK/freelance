@@ -31,7 +31,7 @@ const RegPage = () => {
 		};
 
 		axios
-			.post("http://165.232.69.211:8001/freelance/auth/register/", post)
+			.post("http://freelance_web/freelance/auth/register/", post)
 			.then((response) => {
 				console.log(response);
 				navigate("/login");

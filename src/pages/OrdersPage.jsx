@@ -10,17 +10,17 @@ const OrdersPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const itemsCategory = useFetch(
-		"http://165.232.69.211:8001/freelance/orders/categories"
+		"http://freelance_web/freelance/orders/categories"
 	);
 
 	const itemsTags = useFetch(
-		"http://165.232.69.211:8001/freelance/orders/tags"
+		"http://freelance_web/freelance/orders/tags"
 	);
 
 	const [items, setItems] = useState([]);
 	const offset = (currentPage - 1) * itemsPerPage;
 	const noSortedItems = useFetch(
-		`http://165.232.69.211:8001/freelance/orders/orders?offset=${offset}&limit=${itemsPerPage}`
+		`http://freelance_web/freelance/orders/orders?offset=${offset}&limit=${itemsPerPage}`
 	);
 
 	useEffect(() => {
@@ -35,7 +35,7 @@ const OrdersPage = () => {
 		const selectedTags = [e, ...tags];
 		setTags(selectedTags);
 		const tagUuids = selectedTags.join("&tags=");
-		fetch(`http://165.232.69.211:8001/freelance/orders/orders?tags=${tagUuids}`)
+		fetch(`http://freelance_web/freelance/orders/orders?tags=${tagUuids}`)
 			.then((response) => response.json())
 			.then((data) => setItems(data));
 	}
@@ -45,7 +45,7 @@ const OrdersPage = () => {
 		setCategories(selectedCategory);
 		const categoryUuids = selectedCategory.join("&categories=");
 		fetch(
-			`http://165.232.69.211:8001/freelance/orders/orders?categories=${categoryUuids}`
+			`http://freelance_web/freelance/orders/orders?categories=${categoryUuids}`
 		)
 			.then((response) => response.json())
 			.then((data) => setItems(data));

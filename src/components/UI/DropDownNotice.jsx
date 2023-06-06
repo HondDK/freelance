@@ -5,7 +5,7 @@ const DropdownNotice = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const items = useFetch(
-		"http://165.232.69.211:8001/freelance/orders/order_responses/"
+		"http://freelance_web/freelance/orders/order_responses/"
 	);
 	console.log(items);
 	const toggleDropdown = () => {
